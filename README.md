@@ -1,7 +1,8 @@
-# Fresh project
+# ledgersaur [!WIP] 
 
-Your new Fresh project is ready to go. You can follow the Fresh "Getting
-Started" guide here: https://fresh.deno.dev/docs/getting-started
+This will error out if you don't have a main.ledger file in the root directory.
+Doing some personal testing in dev then will clean it up.
+
 
 ### Usage
 
