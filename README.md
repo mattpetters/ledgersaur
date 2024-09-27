@@ -1,7 +1,10 @@
-# ledgersaur [!WIP] 
-
+# ledgersaur  
+[!WIP]
 This will error out if you don't have a main.ledger file in the root directory.
 Doing some personal testing in dev then will clean it up.
+
+- Using deno 2 rc6
+- Mostly to learn fresh but also I need a ledger viewer/mobile update interface
 
 
 ### Usage
