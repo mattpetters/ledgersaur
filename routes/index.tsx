@@ -5,7 +5,6 @@ import type { Handlers, PageProps } from "$fresh/server.ts";
 interface LedgerData {
   ledgerString: string;
   balanceString: string;
-  accounts: string[];
 }
 
 export const handler: Handlers = {
@@ -37,27 +36,26 @@ export const handler: Handlers = {
 }
 
 export default function Home({data}:PageProps<LedgerData>) {
-  const { accounts, ledgerString, balanceString } = data;
+  const { ledgerString } = data;
   //const count = useSignal(3);
   return (
     <div class="px-4 py-8 mx-auto bg-[#86efac]">
       <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
         <h1 class="text-4xl font-bold">ledgersaur</h1>
-        <p class="my-4 bg-[#fff]">
+        <nav class="flex justify-center space-x-4">
+          <a href="/" class="text-blue-500">Ledger</a>
+          <a href="/balance" class="text-blue-500">Balance</a>
+          <a href="/forecast" class="text-blue-500">Forecast</a>
+        </nav>
+        {/* <p class="my-4 bg-[#fff]">
           {accounts.map((account:string, i) => 
             <span key={i} class="block">
               {account}
             </span>
           )}
-        </p>
-        {/* how do I do a code block again?*/}
+        </p> */}
         <pre>
           {ledgerString}
-        </pre>
-
-        <h2>Balance</h2>
-        <pre>
-          {balanceString}
         </pre>
       </div>
     </div>
