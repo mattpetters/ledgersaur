@@ -1,5 +1,5 @@
 // islands/LedgerDataHandler.tsx
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import type { LedgerData, Transaction } from "../types.ts";
 import AccountsSidebar from "../islands/AccountsSidebar.tsx";
 import TransactionCard from "../components/TransactionCard.tsx";
@@ -14,7 +14,9 @@ export default function LedgerDataHandler({ initialData }: Props) {
   const initialTransactions = initialData?.transactions || [];
 
   const [accounts, setAccounts] = useState<string[]>(initialAccounts);
-  const [transactions, setTransactions] = useState<Transaction[]>(initialTransactions);
+  const [transactions, setTransactions] = useState<Transaction[]>(
+    initialTransactions,
+  );
 
   // On mount, check for cached data
   useEffect(() => {
@@ -35,14 +37,15 @@ export default function LedgerDataHandler({ initialData }: Props) {
   // Clear cache and reload page
   const clearCache = () => {
     localStorage.removeItem("ledgerData");
-    window.location.reload();
+    globalThis.location.reload();
   };
 
   return (
     <div class="flex flex-col items-center px-6 py-12 bg-white rounded shadow space-y-6 w-full">
       <h1 class="text-3xl font-bold mb-4">Ledger Data</h1>
       <p class="text-sm text-gray-600">
-        Your ledger data is stored locally in your browser and is not sent anywhere.
+        Your ledger data is stored locally in your browser and is not sent
+        anywhere.
       </p>
       <button
         onClick={clearCache}
@@ -57,15 +60,15 @@ export default function LedgerDataHandler({ initialData }: Props) {
           {/* Transactions Section */}
           <div class="md:flex-1">
             <h2 class="text-2xl font-semibold mb-2">Transactions</h2>
-            {transactions.length === 0 ? (
-              <p class="text-gray-500">No transactions available.</p>
-            ) : (
+            {transactions.length === 0
+              ? <p class="text-gray-500">No transactions available.</p>
+              : (
                 <div class="space-y-4 max-h-full overflow-y-auto w-full">
-                {transactions.map((transaction, index) => (
-                  <TransactionCard key={index} transaction={transaction} />
-                ))}
-              </div>
-            )}
+                  {transactions.map((transaction, index) => (
+                    <TransactionCard key={index} transaction={transaction} />
+                  ))}
+                </div>
+              )}
           </div>
         </div>
       </section>

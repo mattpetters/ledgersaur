@@ -11,11 +11,11 @@ export default function App({ Component }: PageProps) {
       </head>
       <body>
         <div class="min-h-screen bg-gray-100">
-      <Header />
-      <main class="p-6">
-        <Component />
-      </main>
-    </div>
+          <Header />
+          <main class="p-6">
+            <Component />
+          </main>
+        </div>
       </body>
     </html>
   );

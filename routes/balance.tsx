@@ -7,23 +7,24 @@ interface LedgerData {
 }
 
 export const handler: Handlers = {
-  async GET(_req, ctx){
-
-    const balanceCommand = new Deno.Command("ledger", {args:[ "balance", "--file", "./main.ledger"]});
+  async GET(_req, ctx) {
+    const balanceCommand = new Deno.Command("ledger", {
+      args: ["balance", "--file", "./main.ledger"],
+    });
     const { code, stdout, stderr } = await balanceCommand.output();
 
     if (code !== 0) {
-        const message = new TextDecoder().decode(stderr);
-        throw new Error(message);
+      const message = new TextDecoder().decode(stderr);
+      throw new Error(message);
     }
 
     const balanceString = new TextDecoder().decode(stdout);
 
     return ctx.render({
-        balanceString: balanceString
+      balanceString: balanceString,
     });
-  }
-}
+  },
+};
 
 export default function BalancePage({ data }: PageProps<LedgerData>) {
   const chartData = parseLedgerDataToChartData(data.balanceString);
