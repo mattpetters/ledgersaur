@@ -1,7 +1,12 @@
-# ledgersaur  
+# ledgersaur
+![ledgersaur](https://github.com/user-attachments/assets/7a766b9c-1b85-4e45-a338-67de2b7354f7)
+
+
 [!WIP]
 ~~This will error out if you don't have a main.ledger file in the root directory.~~
+
 It can get a ledger from a github repo now **but** you have to have a `.env` in the root of the project with your `GITHUB_TOKEN` set.
+
 `GITHUB_TOKEN` is a token that has scoped perms enough to read the repository contents.
 
 Only read works now but I will hopefully have a writing solution working for mobile ledger entry soonish.
