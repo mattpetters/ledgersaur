@@ -52,3 +52,6 @@ This will watch the project directory and restart as necessary.
 - [ ] Rename entrypoint file
 - [ ] Parse and process includes/imports (within reason...)
 
+
+## Tests
+https://fresh.deno.dev/docs/canary/examples/writing-tests
