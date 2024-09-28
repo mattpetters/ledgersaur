@@ -1,3 +1,50 @@
+/* [static/styles.css](static/styles.css) */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes dinosaur-move {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.1);
+  }
+}
+
+.animate-dinosaur:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+
+@keyframes dinosaur-color {
+  0%, 100% {
+    fill: #299551;
+  }
+  50% {
+    fill: #2ecc71;
+  }
+}
+
+.animate-dinosaur {
+  animation: dinosaur-move 3s ease-in-out infinite, dinosaur-color 6s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+.overflow-y-auto::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }

@@ -1,21 +1,11 @@
-import { PageProps } from "$fresh/server.ts";
-import { useSignal } from "https://esm.sh/v135/@preact/signals@1.2.2/X-ZS8q/dist/signals.js";
+// routes/add.tsx
+import AddTransactionForm from "../islands/AddTransactionForm.tsx";
 
-
-export default function Page({}: PageProps<Data>) {
-  const description = useSignal("");
+export default function AddTransactionPage() {
   return (
-    <div>
-      <form>
-        <input type="text" name="description" value={description} placeholder={"Description"} />
-        {/* TODO: text with autocomplete for accounts */}
-        {/* TODO: text for amount */}
-        {/* TODO: automatic commodity */}
-        {/* TODO: automatic declare new account if needed (ask) */}
-        {/* TODO: stage change with diff*/}
-        {/* TODO: commit from mobile*/}
-        <button type="submit">Add Txn</button>
-      </form>
+    <div class="flex flex-col items-center px-6 py-12 bg-white rounded shadow space-y-6">
+      <h1 class="text-3xl font-bold mb-4">Add Transaction</h1>
+      <AddTransactionForm />
     </div>
   );
 }

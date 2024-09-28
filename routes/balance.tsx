@@ -1,8 +1,11 @@
 import type { Handlers, PageProps } from "$fresh/server.ts";
+import LedgerChart from "../components/LedgerChart.tsx";
+
 interface LedgerData {
   ledgerString: string;
   balanceString: string;
 }
+
 export const handler: Handlers = {
   async GET(_req, ctx){
 
@@ -21,14 +24,29 @@ export const handler: Handlers = {
     });
   }
 }
-export default function BalancePage({data}:PageProps<LedgerData>) {
-  const { balanceString } = data;
+
+export default function BalancePage({ data }: PageProps<LedgerData>) {
+  const chartData = parseLedgerDataToChartData(data.balanceString);
   return (
     <main>
-        <h1>Balance</h1>
-        <pre>
-          {balanceString}
-        </pre>
+      <h1>Balance</h1>
+      <LedgerChart data={chartData} />
     </main>
   );
+}
+
+function parseLedgerDataToChartData(balanceString: string) {
+  const lines = balanceString.split("\n");
+  const labels = [];
+  const values = [];
+
+  for (const line of lines) {
+    const parts = line.split(" ");
+    if (parts.length === 2) {
+      labels.push(parts[0]);
+      values.push(parseFloat(parts[1]));
+    }
+  }
+
+  return { labels, values };
 }

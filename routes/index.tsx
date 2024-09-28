@@ -1,6 +1,5 @@
-//import { useSignal } from "@preact/signals";
-//import Counter from "../islands/Counter.tsx";
 import type { Handlers, PageProps } from "$fresh/server.ts";
+
 
 interface LedgerData {
   ledgerString: string;
@@ -35,29 +34,48 @@ export const handler: Handlers = {
   }
 }
 
-export default function Home({data}:PageProps<LedgerData>) {
-  const { ledgerString } = data;
-  //const count = useSignal(3);
+export default function Home() {
   return (
-    <div class="px-4 py-8 mx-auto bg-[#86efac]">
-      <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
-        <h1 class="text-4xl font-bold">ledgersaur</h1>
-        <nav class="flex justify-center space-x-4">
-          <a href="/" class="text-blue-500">Ledger</a>
-          <a href="/balance" class="text-blue-500">Balance</a>
-          <a href="/forecast" class="text-blue-500">Forecast</a>
-        </nav>
-        {/* <p class="my-4 bg-[#fff]">
-          {accounts.map((account:string, i) => 
-            <span key={i} class="block">
-              {account}
-            </span>
-          )}
-        </p> */}
-        <pre>
-          {ledgerString}
-        </pre>
-      </div>
+    <div class="px-6 py-12 mx-auto bg-[#86efac] flex flex-col items-center">
+      {/* <h1 class="text-4xl font-bold mb-8 p-4 bg-white rounded shadow flex items-center">
+      <svg 
+      xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill={"#299551"} d="M13 2v1h-1v6h-1v1H9v1H8v1H7v1H5v-1H4v-1H3V9H2v6h1v1h1v1h1v1h1v4h2v-1H7v-1h1v-1h1v-1h1v1h1v3h2v-1h-1v-4h1v-1h1v-1h1v-3h1v1h1v-2h-2V9h5V8h-3V7h5V3h-1V2m-7 1h1v1h-1Z"/></svg>
+      ledgersaur
+      </h1> */}
+      <form
+        method="POST"
+        action="/load-ledger"
+        enctype="multipart/form-data"
+        class="flex flex-col w-full max-w-md p-6 bg-white rounded shadow space-y-6"
+      >
+        <label class="flex flex-col">
+          GitHub Repository URL:
+          <input
+            type="text"
+            name="repoUrl"
+            class="mt-2 p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+            placeholder="https://github.com/username/repo"
+            required
+          />
+        </label>
+        {/* 
+        <label class="flex flex-col">
+          Or upload a local ledger file:
+          <input
+            type="file"
+            name="ledgerFile"
+            accept=".ledger"
+            class="mt-2 p-2 border border-gray-300 rounded"
+          />
+        </label> 
+        */}
+        <button
+          type="submit"
+          class="px-4 py-2 bg-green-600 text-white font-semibold rounded hover:bg-green-700 transition duration-300"
+        >
+          Load Ledger
+        </button>
+      </form>
     </div>
   );
 }
